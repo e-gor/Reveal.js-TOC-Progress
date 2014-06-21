@@ -57,7 +57,7 @@ For further customization (like making the footer a header, for example), arrang
 
 ##Use
 
-The Reveal-TOC-Progress plugin works in the same manner as the Presentable plugin (http://fcfeibel.com/presentable). It takes the first h1, h2 or h3 tag from the slides as the titles for the table of contents. Main sections will be the titles of the first slide in each vertical section and secondary sections will be the rest of the titles.
+The Reveal-TOC-Progress plugin works in the same manner as the Presentable plugin (http://fcfeibel.com/presentable). It takes the first ```h1```, ```h2``` or ```h3``` tag from the slides as the titles for the table of contents. Main sections will be the titles of the first slide in each vertical section and secondary sections will be the rest of the titles.
 
 A title will be excluded from the table of contents if we put it a ```class``` attribute with a value of ```no-toc-progress```.
 
@@ -65,4 +65,4 @@ Likewise, the Reveal-TOC-Progress footer will not be shown in a slide if the cor
 
 #License
 
-GPL v3 http://www.gnu.org/copyleft/gpl.html 
+GPL v3 (http://www.gnu.org/copyleft/gpl.html).
