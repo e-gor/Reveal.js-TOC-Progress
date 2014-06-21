@@ -38,6 +38,7 @@ Reveal.initialize
 		...
 		dependencies:
 		[
+			...
 			{ src: 'plugin/toc-progress/toc-progress.js', async: true, callback: function() { toc_progress.initialize(); toc_progress.create(); } }
 		]
 	}
