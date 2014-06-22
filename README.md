@@ -5,17 +5,25 @@ LaTeX Beamer-like progress indicator according to table of contents for Reveal.j
 
 #Description
 
+##What is Reveal-TOC-Progress?
+
 Reveal-TOC-Progress is a plugin for the Reveal.js framework for HTML presentations (https://github.com/hakimel/reveal.js).
 
-This plugin includes a footer in all the slides of a Reveal.js presentation (with optional exclusion of some slides) that will show the progress in relation to the table of contents, in a similar way as in a LaTeX-Beamer presentation.
+##What does Reveal-TOC-Progress do?
+
+Reveal-TOC-Progress includes a footer in all the slides of a Reveal.js presentation (with optional exclusion of some slides) that will show the progress in relation to the table of contents, in a similar way as in a LaTeX-Beamer presentation.
+
+##Behaviour
 
 The footer has two columns. The left column shows a list of the main sections (except those we explicitly tell to ignore), highlighting the section we are now in. The right column shows the subsections of the main section we are now in (again with the option of ignoring those we do not want to show), highlighting the subsection we are currently at.
+
+##Configurable options
 
 The behaviour for too long section or subsection lists is configurable. The font of the text can be reduced to make the list fit in the footer, or the list will scroll when necessary.
 
 The background color of the footer is also configurable.
 
-#Instructions of use
+#Installation
 
 ##Necessary files
 
@@ -44,6 +52,7 @@ Reveal.initialize
 	}
 );
 ```
+
 ##Customization
 
 The ```toc_progress.initialize``` function can take two parameters:
@@ -55,13 +64,23 @@ Including the ```toc_progress.create``` function in the Reveal.js initialization
 
 For further customization (like making the footer a header, for example), arrange the ```plugin/toc-progress/toc-progress.css``` file accordingly.
 
-##Use
+#Use
+
+##Title organization
 
 The Reveal-TOC-Progress plugin works in the same manner as the Presentable plugin (http://fcfeibel.com/presentable). It takes the first ```h1```, ```h2``` or ```h3``` tag from the slides as the titles for the table of contents. Main sections will be the titles of the first slide in each vertical section and secondary sections will be the rest of the titles.
 
+##Title exclusion
+
 A title will be excluded from the table of contents if we put it a ```class``` attribute with a value of ```no-toc-progress```.
 
+##Exclusion from slides
+
 Likewise, the Reveal-TOC-Progress footer will not be shown in a slide if the corresponding section has a ```data-state``` attribute with a value of ```no-toc-progress```.
+
+##Optional deletion and recreation at any time
+
+Pressing the ```q``` key causes the Reveal-TOC-Progress footer to disappear. Pressing the ```q``` key again creates it again.
 
 #License
 
