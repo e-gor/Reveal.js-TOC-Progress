@@ -31,7 +31,7 @@ The ```toc-progress``` folder of the ```plugin``` folder has to be copied to the
 
 ##CSS
 
-The CSS of the Reveal.js-TOC-Progress plugin is included dynamically when it is initilizated. However, if we configure the presentation not to include the Reveal.js-TOC-Progress footer in the first page, this will be shown until the CSS is loaded dynamically, causing an ugly effect. To avoid it, include the CSS in the header of the Reveal.js presentation, with this line:
+The CSS of the Reveal.js-TOC-Progress plugin is included dynamically when it is initialized. However, if we configure the presentation not to include the Reveal.js-TOC-Progress footer in the first page, this will be shown until the CSS is loaded dynamically, causing an ugly effect. To avoid it, include the CSS in the header of the Reveal.js presentation, with this line:
 
 ```<link rel="stylesheet" href="plugin/toc-progress/toc-progress.css">```
 
@@ -66,7 +66,7 @@ For further customization (like making the footer a header, for example), arrang
 
 #Use
 
-##Title organization
+##Titles
 
 The Reveal.js-TOC-Progress plugin works in the same manner as the Presentable plugin (http://fcfeibel.com/presentable). It takes the first ```h1```, ```h2``` or ```h3``` tag from the slides as the titles for the table of contents. Main sections will be the titles of the first slide in each vertical section and secondary sections will be the rest of the titles.
 
