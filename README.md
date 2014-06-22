@@ -82,6 +82,11 @@ Likewise, the Reveal-TOC-Progress footer will not be shown in a slide if the cor
 
 Pressing the ```q``` key causes the Reveal-TOC-Progress footer to disappear. Pressing the ```q``` key again creates it again.
 
+#Links
+
+- Source code on GitHub: https://github.com/e-gor/Reveal-TOC-Progress
+- Demo presentation with Reveal-TOC-Progress: http://e-gor.github.io/Reveal-TOC-Progress/demo
+
 #License
 
 GPL v3 (http://www.gnu.org/copyleft/gpl.html).
