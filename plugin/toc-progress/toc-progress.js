@@ -113,6 +113,11 @@ toc_progress.create=function()
 			{
 				var secondary_section=secondary_sections[secondary_sections_index];
 				var title_element=this.getElementsByTagNames('h1,h2,h3',secondary_section)[0];
+				if (secondary_section.getAttribute('class').indexOf('no-toc-progress')!=-1)
+				{
+					//the section has a no-toc-progress class => in this case i clear the title element
+					title_element = null;
+				}
 				if (title_element!=null && (!title_element.hasAttribute('class') || title_element.getAttribute('class').indexOf('no-toc-progress')==-1))
 				{
 					if (secondary_sections_index==0)
