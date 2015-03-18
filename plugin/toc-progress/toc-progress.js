@@ -375,12 +375,17 @@ toc_progress.initialize=function(reducescroll,background)
 	this.background=background || 'rgba(0,0,127,0.1)';
 
 	// Capture 'q' key to toggle the display of the TOC-Progress footer
-
-	if (Reveal.getConfig().keyboard!=false)
+	mappings = Reveal.getConfig().keyboard;
+	if (mappings!=false)
 	{
-		Reveal.configure({keyboard:{
-			81:function(){toc_progress.toggle()}
-		}});
+		if ( typeof mappings !== 'object' ) {
+			mappings = {};
+		}
+
+		// TODO: warn user if key is already set
+		mappings[81] = function(){toc_progress.toggle()};
+
+		Reveal.configure({keyboard:mappings});
 	};
 
 	// Capture 'slidechanged' event to reduce or scroll the elements in the TOC-Progress footer if necessary
