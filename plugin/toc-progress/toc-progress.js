@@ -333,7 +333,7 @@ toc_progress.reduceorscrollelementifnecessary=function(element)
 			{
 				visible_element_index=visible_element_index+1;
 			};
-			if (window.getComputedStyle(li_element).getPropertyValue('font-weight')=='700')
+			if (window.getComputedStyle(li_element).getPropertyValue('font-weight')=='700' || window.getComputedStyle(li_element).getPropertyValue('font-weight')==700 || window.getComputedStyle(li_element).getPropertyValue('font-weight')=='bold')
 			{
 				selected_element_index=visible_element_index;
 			};
