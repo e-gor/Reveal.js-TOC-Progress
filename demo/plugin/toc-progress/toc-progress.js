@@ -107,6 +107,55 @@ toc_progress.create=function()
 	{
 		var main_section=main_sections[main_sections_index];
 		var secondary_sections=main_section.getElementsByTagName('section');
+
+		// Main title
+		var main_title_set = false;
+		{
+			var title_element=this.getElementsByTagNames('h1,h2,h3',main_section)[0];
+			if (title_element!=null && (!title_element.hasAttribute('class') || title_element.getAttribute('class').indexOf('no-toc-progress')==-1))
+			{
+				if (main_section.hasAttribute('data-state'))
+				{
+					main_section.setAttribute('data-state',main_section.getAttribute('data-state')+' toc-progress-'+main_sections_index.toString());
+				}
+				else
+				{
+					main_section.setAttribute('data-state','toc-progress-'+main_sections_index.toString());
+				};
+				var li_element=document.createElement('li');
+				li_element.setAttribute('id','toc-progress-'+main_sections_index.toString());
+				toc_progress_footer_main_inside_ul.appendChild(li_element);
+				var a_element=document.createElement('a');
+				a_element.setAttribute('href','#/'+main_sections_index.toString());
+				a_element.appendChild(document.createTextNode(title_element.textContent));
+				li_element.appendChild(a_element);
+				style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
+				style_node.textContent=style_node.textContent+'html[class*="toc-progress-'+main_sections_index.toString()+'-"] #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
+				style_node.textContent=style_node.textContent+'html:not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class*="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
+				main_title_set = true;
+			}
+			else if (title_element==null)
+			{
+				var untitled_section_previous=main_section;
+				do
+				{
+					if (untitled_section_previous.previousSibling==null)
+					{
+						untitled_section_previous=untitled_section_previous.parentNode;
+					}
+					else
+					{
+						untitled_section_previous=untitled_section_previous.previousSibling;
+					};
+				} while (untitled_section_previous!=null && (untitled_section_previous.nodeType!=Node.ELEMENT_NODE || !untitled_section_previous.hasAttribute('data-state')));
+				if (untitled_section_previous!=null)
+				{
+					main_section.setAttribute('data-state',untitled_section_previous.getAttribute('data-state'));
+				};
+			};
+		};
+
+		// Secondary title
 		if (secondary_sections.length>0)
 		{
 			for (var secondary_sections_index=0;secondary_sections_index<secondary_sections.length;secondary_sections_index++)
@@ -119,7 +168,7 @@ toc_progress.create=function()
 				}
 				if (title_element!=null && (!title_element.hasAttribute('class') || title_element.getAttribute('class').indexOf('no-toc-progress')==-1))
 				{
-					if (secondary_sections_index==0)
+					if (secondary_sections_index==0 && !main_title_set)
 					{
 						if (secondary_section.hasAttribute('data-state'))
 						{
@@ -138,9 +187,9 @@ toc_progress.create=function()
 						li_element.appendChild(a_element);
 						style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
 						style_node.textContent=style_node.textContent+'html[class*="toc-progress-'+main_sections_index.toString()+'-"] #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
-						style_node.textContent=style_node.textContent+'html:not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
+						style_node.textContent=style_node.textContent+'html:not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class*="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
 					}
-					else
+					else if (secondary_sections_index!=0)
 					{
 						if (secondary_section.hasAttribute('data-state'))
 						{
@@ -178,50 +227,6 @@ toc_progress.create=function()
 					{
 						secondary_section.setAttribute('data-state',untitled_section_previous.getAttribute('data-state'));
 					};
-				};
-			};
-		}
-		else
-		{
-			var title_element=this.getElementsByTagNames('h1,h2,h3',main_section)[0];
-			if (title_element!=null && (!title_element.hasAttribute('class') || title_element.getAttribute('class').indexOf('no-toc-progress')==-1))
-			{
-				if (main_section.hasAttribute('data-state'))
-				{
-					main_section.setAttribute('data-state',main_section.getAttribute('data-state')+' toc-progress-'+main_sections_index.toString());
-				}
-				else
-				{
-					main_section.setAttribute('data-state','toc-progress-'+main_sections_index.toString());
-				};
-				var li_element=document.createElement('li');
-				li_element.setAttribute('id','toc-progress-'+main_sections_index.toString());
-				toc_progress_footer_main_inside_ul.appendChild(li_element);
-				var a_element=document.createElement('a');
-				a_element.setAttribute('href','#/'+main_sections_index.toString());
-				a_element.appendChild(document.createTextNode(title_element.textContent));
-				li_element.appendChild(a_element);
-				style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
-				style_node.textContent=style_node.textContent+'html[class*="toc-progress-'+main_sections_index.toString()+'-"] #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
-				style_node.textContent=style_node.textContent+'html:not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
-			}
-			else if (title_element==null)
-			{
-				var untitled_section_previous=main_section;
-				do
-				{
-					if (untitled_section_previous.previousSibling==null)
-					{
-						untitled_section_previous=untitled_section_previous.parentNode;
-					}
-					else
-					{
-						untitled_section_previous=untitled_section_previous.previousSibling;
-					};
-				} while (untitled_section_previous!=null && (untitled_section_previous.nodeType!=Node.ELEMENT_NODE || !untitled_section_previous.hasAttribute('data-state')));
-				if (untitled_section_previous!=null)
-				{
-					main_section.setAttribute('data-state',untitled_section_previous.getAttribute('data-state'));
 				};
 			};
 		};
@@ -328,7 +333,7 @@ toc_progress.reduceorscrollelementifnecessary=function(element)
 			{
 				visible_element_index=visible_element_index+1;
 			};
-			if (window.getComputedStyle(li_element).getPropertyValue('font-weight')=='700')
+			if (window.getComputedStyle(li_element).getPropertyValue('font-weight')=='700' || window.getComputedStyle(li_element).getPropertyValue('font-weight')==700 || window.getComputedStyle(li_element).getPropertyValue('font-weight')=='bold')
 			{
 				selected_element_index=visible_element_index;
 			};
@@ -370,12 +375,17 @@ toc_progress.initialize=function(reducescroll,background)
 	this.background=background || 'rgba(0,0,127,0.1)';
 
 	// Capture 'q' key to toggle the display of the TOC-Progress footer
-
-	if (Reveal.getConfig().keyboard!=false)
+	mappings = Reveal.getConfig().keyboard;
+	if (mappings!=false)
 	{
-		Reveal.configure({keyboard:{
-			81:function(){toc_progress.toggle()}
-		}});
+		if ( typeof mappings !== 'object' ) {
+			mappings = {};
+		}
+
+		// TODO: warn user if key is already set
+		mappings[81] = function(){toc_progress.toggle()};
+
+		Reveal.configure({keyboard:mappings});
 	};
 
 	// Capture 'slidechanged' event to reduce or scroll the elements in the TOC-Progress footer if necessary
