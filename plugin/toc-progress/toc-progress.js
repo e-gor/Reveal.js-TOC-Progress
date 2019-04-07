@@ -102,7 +102,7 @@ toc_progress.create=function()
 
 	// Detect main sections and subsections and create list elements in the TOC-Progress footer and styles for each
 
-	var main_sections=document.querySelectorAll('.slides > section');	
+	var main_sections=document.querySelectorAll('.slides > section');
 	for (var main_sections_index=0;main_sections_index<main_sections.length;main_sections_index++)
 	{
 		var main_section=main_sections[main_sections_index];
@@ -361,10 +361,22 @@ toc_progress.reduceorscrollelementifnecessary=function(element)
 toc_progress.initialize=function(reducescroll,background)
 {
 
-	// Link to the TOC-Progress CSS
+	// Try to determine path to CSS by replacing "js" with "css".
+	// Use hard-coded string as fallback.
+	var path="plugin/toc-progress/toc-progress.css";
+	var script;
+	if (document.currentScript) {
+		script = document.currentScript;
+	} else {
+		script = document.querySelector('script[src$="/toc-progress.js"]');
+	}
+	if (script) {
+		path = script.src.slice(0, -2) + "css";
+	}
 
+	// Link to the TOC-Progress CSS
 	var link=document.createElement("link");
-	link.href="plugin/toc-progress/toc-progress.css";
+	link.href=path;
 	link.type="text/css";
 	link.rel="stylesheet";
 	document.getElementsByTagName("head")[0].appendChild(link);
@@ -392,4 +404,3 @@ toc_progress.initialize=function(reducescroll,background)
 
 	Reveal.addEventListener('slidechanged',function(event){toc_progress.reduceorscrollifnecessary(this.reduceorscroll)});
 };
-
