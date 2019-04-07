@@ -102,7 +102,7 @@ toc_progress.create=function()
 
 	// Detect main sections and subsections and create list elements in the TOC-Progress footer and styles for each
 
-	var main_sections=document.querySelectorAll('.slides > section');	
+	var main_sections=document.querySelectorAll('.slides > section');
 	for (var main_sections_index=0;main_sections_index<main_sections.length;main_sections_index++)
 	{
 		var main_section=main_sections[main_sections_index];
@@ -386,10 +386,10 @@ toc_progress.initialize=function(reducescroll,background)
 		mappings[81] = function(){toc_progress.toggle()};
 
 		Reveal.configure({keyboard:mappings});
+		Reveal.registerKeyboardShortcut('Q', 'Toggle TOC-Progress footer');
 	};
 
 	// Capture 'slidechanged' event to reduce or scroll the elements in the TOC-Progress footer if necessary
 
 	Reveal.addEventListener('slidechanged',function(event){toc_progress.reduceorscrollifnecessary(this.reduceorscroll)});
 };
-
