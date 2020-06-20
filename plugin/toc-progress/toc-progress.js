@@ -16,6 +16,7 @@ var toc_progress=
 	toc_progress_on:false,
 	reduceorscroll:'scroll',
 	background:'rgba(0,0,127,0.1)',
+	viewport:'html',
 };
 
 /* Function to obtain all child elements with any of the indicated tags (from http://www.quirksmode.org/dom/getElementsByTagNames.html) */
@@ -130,8 +131,8 @@ toc_progress.create=function()
 				a_element.appendChild(document.createTextNode(title_element.textContent));
 				li_element.appendChild(a_element);
 				style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
-				style_node.textContent=style_node.textContent+'html[class*="toc-progress-'+main_sections_index.toString()+'-"] #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
-				style_node.textContent=style_node.textContent+'html:not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class*="toc-progress-'+main_sections_index.toString()+' "]):not([class$="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
+				style_node.textContent=style_node.textContent+this.viewport+'[class*="toc-progress-'+main_sections_index.toString()+'-"] #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
+				style_node.textContent=style_node.textContent+this.viewport+':not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class*="toc-progress-'+main_sections_index.toString()+' "]):not([class$="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
 				main_title_set = true;
 			}
 			else if (title_element==null)
@@ -186,8 +187,8 @@ toc_progress.create=function()
 						a_element.appendChild(document.createTextNode(title_element.textContent));
 						li_element.appendChild(a_element);
 						style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
-						style_node.textContent=style_node.textContent+'html[class*="toc-progress-'+main_sections_index.toString()+'-"] #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
-						style_node.textContent=style_node.textContent+'html:not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class*="toc-progress-'+main_sections_index.toString()+' "]):not([class$="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
+						style_node.textContent=style_node.textContent+this.viewport+'[class*="toc-progress-'+main_sections_index.toString()+'-"] #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
+						style_node.textContent=style_node.textContent+this.viewport+':not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class*="toc-progress-'+main_sections_index.toString()+' "]):not([class$="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
 					}
 					else if (secondary_sections_index!=0)
 					{
@@ -358,7 +359,7 @@ toc_progress.reduceorscrollelementifnecessary=function(element)
 
 /* Method to initialize the TOC-Progress footer */
 
-toc_progress.initialize=function(reducescroll,background)
+toc_progress.initialize=function(reducescroll,background,viewport)
 {
 
 	// Try to determine path to CSS by replacing "js" with "css".
@@ -385,6 +386,7 @@ toc_progress.initialize=function(reducescroll,background)
 
 	this.reduceorscroll=reducescroll || 'scroll';
 	this.background=background || 'rgba(0,0,127,0.1)';
+	this.viewport=viewport || 'html';
 
 	// Capture 'q' key to toggle the display of the TOC-Progress footer
 	mappings = Reveal.getConfig().keyboard;
