@@ -23,6 +23,12 @@ The behaviour for too long section or subsection lists is configurable. The font
 
 The background color of the footer is also configurable.
 
+For compatibility with Reveal.js 4.x, the viewport element to which
+`class` attributes are assigned from
+[`data-state`](https://revealjs.com/markup/#slide-states) is
+configurable.  With Reveal.js 3.x, this was the ```html``` element,
+while it is `body` with [Reveal.js 4.x](https://revealjs.com/markup/#viewport).
+
 # Installation
 
 ## Necessary files
@@ -55,10 +61,11 @@ Reveal.initialize
 
 ## Customization
 
-The ```toc_progress.initialize``` function can take two parameters:
+The ```toc_progress.initialize``` function can take three parameters:
 
 - ```reducescroll```: if ```'reduce'```, the font of the text of too long section or subsection lists is reduced to make the list fit in the footer; if ```'scroll'``` (default), the list will scroll when necessary.
 - ```background```: a string of the form ```'rgba(0,255,0,0.1)'```, for the background colour of the footer.
+- ```viewport```: a string such as ```'html'``` (default) or ```'body'``` to define the viewport for [slide states](https://revealjs.com/markup/#viewport).
 
 Including the ```toc_progress.create``` function in the Reveal.js initialization is not compulsory. If it is not included, the key ```q``` has to be pressed to create the footer.
 
