@@ -287,8 +287,11 @@ toc_progress.toggle=function()
 
 toc_progress.reduceorscrollifnecessary=function()
 {
-	this.reduceorscrollelementifnecessary(document.getElementById('toc-progress-footer-main'));
-	this.reduceorscrollelementifnecessary(document.getElementById('toc-progress-footer-secondary'));
+	if (toc_progress_on == true)
+	{
+		this.reduceorscrollelementifnecessary(document.getElementById('toc-progress-footer-main'));
+		this.reduceorscrollelementifnecessary(document.getElementById('toc-progress-footer-secondary'));
+	}
 };
 
 /* Reduce or scroll the elements in each section of the TOC-Progress footer if necessary */
