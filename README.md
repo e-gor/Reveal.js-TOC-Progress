@@ -63,7 +63,7 @@ Reveal.initialize
 
 The ```toc_progress.initialize``` function can take three parameters:
 
-- ```reducescroll```: if ```'reduce'```, the font of the text of too long section or subsection lists is reduced to make the list fit in the footer; if ```'scroll'``` (default), the list will scroll when necessary.
+- ```reduceorscroll```: if ```'reduce'```, the font of the text of too long section or subsection lists is reduced to make the list fit in the footer; if ```'scroll'``` (default), the list will scroll when necessary.
 - ```background```: a string of the form ```'rgba(0,255,0,0.1)'```, for the background colour of the footer.
 - ```viewport```: a string such as ```'html'``` (default) or ```'body'``` to define the viewport for [slide states](https://revealjs.com/markup/#viewport).
 
