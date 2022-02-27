@@ -72,7 +72,7 @@ toc_progress.create=function()
 
 	var toc_progress_footer=document.createElement('footer');
 	toc_progress_footer.setAttribute('id','toc-progress-footer');
-	toc_progress_footer.setAttribute('style','background:'+this.background);
+	toc_progress_footer.setAttribute('style','display: none');
 	var toc_progress_footer_main=document.createElement('div');
 	toc_progress_footer_main.setAttribute('id','toc-progress-footer-main');
 	toc_progress_footer.appendChild(toc_progress_footer_main);
@@ -236,10 +236,6 @@ toc_progress.create=function()
 	// Reduce or scroll the elements in the TOC-Progress footer if necessary
 
 	this.reduceorscrollifnecessary(this.reduceorscroll);
-
-	// Global variable to indicate that TOC-Progress footer is displayed
-
-	this.toc_progress_on=true;
 };
 
 /* Method to destroy the TOC-Progress footer */
@@ -263,23 +259,24 @@ toc_progress.destroy=function()
 			title_element_section.removeAttribute('data-state')
 		};
 	};
-
-	// Global variable to indicate that TOC-Progress footer is not displayed
-
-	this.toc_progress_on=false;
 };
 
 /* Method to toggle the TOC-Progress footer */
 
 toc_progress.toggle=function()
 {
+	var toc_progress_footer=document.getElementById('toc-progress-footer');
 	if (this.toc_progress_on==false)
 	{
-		this.create();
+		// Display TOC-Progress footer
+		toc_progress_footer.style="background: " + this.background;
+            	this.toc_progress_on=true;
 	}
 	else
 	{
-		this.destroy();
+		// Hide TOC-Progress footer
+		toc_progress_footer.style="display: none";
+            	this.toc_progress_on=false;
 	};
 };
 
@@ -287,7 +284,7 @@ toc_progress.toggle=function()
 
 toc_progress.reduceorscrollifnecessary=function()
 {
-	if (toc_progress_on == true)
+	if (this.toc_progress_on==true)
 	{
 		this.reduceorscrollelementifnecessary(document.getElementById('toc-progress-footer-main'));
 		this.reduceorscrollelementifnecessary(document.getElementById('toc-progress-footer-secondary'));
@@ -405,6 +402,9 @@ toc_progress.initialize=function(reducescroll,background,viewport)
 		Reveal.configure({keyboard:mappings});
 		Reveal.registerKeyboardShortcut('Q', 'Toggle TOC-Progress footer');
 	};
+	
+	// Create hidden TOC-Progress footer
+	this.create();
 
 	// Capture 'slidechanged' event to reduce or scroll the elements in the TOC-Progress footer if necessary
 
