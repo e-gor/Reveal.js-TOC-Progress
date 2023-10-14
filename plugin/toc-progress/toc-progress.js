@@ -13,10 +13,10 @@
 
 var toc_progress=
 {
-	toc_progress_on:false,
+	toc_progress_on:true,
 	reduceorscroll:'scroll',
 	background:'rgba(0,0,127,0.1)',
-	viewport:'html',
+	viewport:'body',
 };
 
 /* Function to obtain all child elements with any of the indicated tags (from http://www.quirksmode.org/dom/getElementsByTagNames.html) */
@@ -72,7 +72,14 @@ toc_progress.create=function()
 
 	var toc_progress_footer=document.createElement('footer');
 	toc_progress_footer.setAttribute('id','toc-progress-footer');
-	toc_progress_footer.setAttribute('style','display: none');
+	if (this.toc_progress_on)
+	{
+		toc_progress_footer.setAttribute('style','background:'+this.background);
+	}
+	else
+	{
+		toc_progress_footer.setAttribute('style','display: none');
+	};
 	var toc_progress_footer_main=document.createElement('div');
 	toc_progress_footer_main.setAttribute('id','toc-progress-footer-main');
 	toc_progress_footer.appendChild(toc_progress_footer_main);
@@ -359,7 +366,7 @@ toc_progress.reduceorscrollelementifnecessary=function(element)
 
 /* Method to initialize the TOC-Progress footer */
 
-toc_progress.initialize=function(reducescroll,background,viewport)
+toc_progress.initialize=function(reducescroll,background,viewport,visible)
 {
 
 	// Try to determine path to CSS by replacing "js" with "css".
@@ -386,7 +393,8 @@ toc_progress.initialize=function(reducescroll,background,viewport)
 
 	this.reduceorscroll=reducescroll || 'scroll';
 	this.background=background || 'rgba(0,0,127,0.1)';
-	this.viewport=viewport || 'html';
+	this.viewport=viewport || 'body';
+	this.toc_progress_on=visible || true;
 
 	// Capture 'q' key to toggle the display of the TOC-Progress footer
 	mappings = Reveal.getConfig().keyboard;
