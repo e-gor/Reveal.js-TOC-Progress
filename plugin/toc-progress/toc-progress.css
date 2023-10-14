@@ -13,8 +13,6 @@
 
 #toc-progress-footer
 {
-	opacity: 1;
-	transition: opacity 800ms ease-in-out;
 	position: fixed;
 	bottom: 3px;
 	height: 9.5vh;
@@ -25,6 +23,13 @@
 	white-space: nowrap;
 	padding-top: 0.5vh;
 	padding-bottom: 0.5vh;
+}
+
+#toc-progress-footer
+{
+	visibility: visible;
+	opacity: 1;
+	transition: visibility 0s, opacity 800ms ease-in-out;
 }
 
 /* Bottom position for the TOC-Progress footer when progress bar is visible */
@@ -45,16 +50,18 @@ div.progress[style="display: block;"] ~ #toc-progress-footer
 
 .no-toc-progress #toc-progress-footer
 {
+	visibility: hidden;
 	opacity: 0;
-	transition: opacity 800ms ease-in-out;
+	transition: visibility 800ms, opacity 800ms ease-in-out;
 }
 
 /* Make TOC-Progress invisible in overview mode */
 
 .overview #toc-progress-footer
 {
+	visibility: hidden;
 	opacity: 0;
-	transition: opacity 800ms ease-in-out;
+	transition: visibility 800ms, opacity 800ms ease-in-out;
 }
 
 /* Position and styles for the left part (main sections) of the TOC-Progress */
